@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Buy&Sell Coin Flip Bets</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .headImg{
+      background-image: url(http://blogs.oc.edu/ee/images/uploads/ece/headsTails_thumb.jpeg)
+    }
+    .tailImg{
+      background-image: url(http://blogs.oc.edu/ee/images/uploads/ece/headsTails_thumb.jpeg)
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Buy&Sell Coin Flip Bets</h1>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <div id="accountDetails" class="">
+            Your Address:<span class="address">?</span>
+            <strong class="balance pull-right">? ETH</strong>
+          </div>
+          <hr/>
+          <div id="withdrawalDetails">
+            Current Withdrawal Amount: <strong></strong>
+            <button class="btn btn-default pull-right" type="button" onclick="return App.withdrawal(this);">Withdrawal</button>
+          </div>
+          <hr/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="well">
+            <form class="form-inline clearfix" onsubmit="return App.startBet(this)">
+              <div class="form-group col-md-3 col-xs-4">
+                <label class="radio-inline">
+                  <input type="radio" name="sellerCh" id="sellerChHead" value="head" checked>
+                  Head
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="sellerCh" id="sellerChTail" value="tail">
+                  Tail
+                </label>
+              </div>
+              <div class="form-group col-md-6 col-xs-6">
+                <div class="">
+                  <label for="amountInput" class="sr-only">Bet Amount</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="amountInput" name="amount" placeholder="Amount">
+                    <div class="input-group-addon">ETH</div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary pull-right">Sell Bet</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- BETS LOAD HERE -->
+      <div id="openBets" class="row"></div>
+    </div>
+
+    <div id="betTemplate" style="display: none;">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default panel-pet">
+          <div class="panel-heading">
+            <h3 class="panel-title">Seller Says: <strong class="text-uppercase"></strong></h3>
+          </div>
+          <div class="panel-body">
+            <strong>Seller</strong>: <span class="bet-seller">0x0</span><br/>
+            <strong>Amount</strong>: <span class="bet-amount">-</span><br/>
+            <button class="btn btn-default btn-join pull-right" type="button" data-id="0" onclick="return App.joinBet(this);">Join</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

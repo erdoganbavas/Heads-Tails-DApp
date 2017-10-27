@@ -1,0 +1,626 @@
+{
+  "contract_name": "BetBook",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "bets",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "name": "sellerCh",
+          "type": "uint8"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "name": "result",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "joinBet",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getOpenBets",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getClosedBets",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_choice",
+          "type": "uint256"
+        }
+      ],
+      "name": "startBet",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "pendingWithdraws",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "startBetEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "_winner",
+          "type": "address"
+        }
+      ],
+      "name": "joinBetEvent",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b6109538061001f6000396000f300606060405236156100805763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166322af00fa811461008557806339fb3f45146100fb5780633ccfd60b1461010857806358a93bea1461011d578063b42b308314610184578063d20e54a8146101eb578063fa14d481146101f8575b600080fd5b341561009057600080fd5b61009b600435610229565b604051868152600160a060020a03808716602083015285166040820152606081018460028111156100c857fe5b60ff1681526020018381526020018260028111156100e257fe5b60ff168152602001965050505050505060405180910390f35b610106600435610282565b005b341561011357600080fd5b61010661047f565b005b341561012857600080fd5b6101306104ec565b60405160208082528190810183818151815260200191508051906020019060200280838360005b838110156101705780820151818401525b602001610157565b505050509050019250505060405180910390f35b341561018f57600080fd5b61013061063b565b60405160208082528190810183818151815260200191508051906020019060200280838360005b838110156101705780820151818401525b602001610157565b505050509050019250505060405180910390f35b610106600435610789565b005b341561020357600080fd5b610217600160a060020a0360043516610903565b60405190815260200160405180910390f35b600060208190529081526040902080546001820154600283015460038401546004909401549293600160a060020a03928316939282169260ff740100000000000000000000000000000000000000009093048316921686565b6000806000808411801561029857506002548411155b15156102a357600080fd5b60008481526020819052604090206002810154909350349250600160a060020a0316156102cf57600080fd5b600183015433600160a060020a03908116911614156102ed57600080fd5b600383015482146102fd57600080fd5b60005b600484015460ff16600281111561031357fe5b1461031d57600080fd5b6002838101805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a0316179055435b06151561036c576004830180546001919060ff191682805b0217905550610391565b6002435b0660011415610391576004830180546002919060ff19166001835b02179055505b5b600090508260020160149054906101000a900460ff1660028111156103b357fe5b600484015460ff1660028111156103c657fe5b14156104075750600382015460018084018054600160a060020a0390811660009081526020939093526040909220805493850190930190925590541661043a565b506003820154600283018054600160a060020a039081166000908152600160205260409020805493850190930190925554165b837fb8f0f82b1b428d9b4c652fb245d1acc585adc1ec2dcfebbebf5e1d2839b7c12c82604051600160a060020a03909116815260200160405180910390a25b50505050565b600160a060020a0333166000908152600160205260408120549081116104a457600080fd5b600160a060020a0333166000818152600160205260408082209190915582156108fc0290839051600060405180830381858888f1935050505015156104e857600080fd5b5b50565b6104f4610915565b6104fc610915565b600080610507610915565b60006002546000141561053c5760006040518059106105235750595b908082528060200260200182016040525b509550610633565b60025460405180591061054c5750595b908082528060200260200182016040525b50945060009350600192505b60025483116105cb57600083815260208190526040902060020154600160a060020a031615156105bf576000838152602081905260409020548585815181106105ae57fe5b602090810290910101526001909301925b5b600190920191610569565b836040518059106105d95750595b908082528060200260200182016040525b509150600090505b8381101561062f5784818151811061060657fe5b9060200190602002015182828151811061061c57fe5b602090810290910101525b6001016105f2565b8195505b505050505090565b610643610915565b61064b610915565b600080610656610915565b60006002546000141561068b5760006040518059106105235750595b908082528060200260200182016040525b509550610633565b60025460405180591061069b5750595b908082528060200260200182016040525b50945060009350600192505b600254831161071957600083815260208190526040902060020154600160a060020a03161561070d576000838152602081905260409020548585815181106106fc57fe5b602090810290910101526001909301925b5b6001909201916106b8565b836040518059106107275750595b908082528060200260200182016040525b509150600090505b8381101561062f5784818151811061075457fe5b9060200190602002015182828151811061076a57fe5b602090810290910101525b600101610740565b8195505b505050505090565b6002805460019081019091556000908214156107a7575060016107ab565b5060025b60c060405190810160405280600254815260200133600160a060020a031681526020016000600160a060020a031681526020018260028111156107ea57fe5b815234602082015260400160005b9052600254600090815260208190526040902081518155602082015160018201805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055604082015160028201805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a039290921691909117905560608201518160020160146101000a81548160ff0219169083600281111561089b57fe5b02179055506080820151816003015560a082015160048201805460ff191660018360028111156108c757fe5b02179055509050506002547fdc5a47cec32f71a5763ed1129c085a88436327842a88bc8862d0027a70e8603060405160405180910390a25b5050565b60016020526000908152604090205481565b602060405190810160405260008152905600a165627a7a72305820e345f06a7702465f38641b7a99cf9646feb91be89afd51ffd2a7197c550aafd60029",
+  "networks": {
+    "1508755383716": {
+      "events": {
+        "0xeaa4b099f586301e564c91382ccf87c6d260f2231df5e3cbd9984190d17ee68b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x4d020e6998919b4ff01f6bb947a9ee6594faf0d3e292a8fb75b2515940fc48cc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xa42fb98bcbb6d8d950b91a705e28d926e3de3e29",
+      "updated_at": 1508780605037
+    },
+    "1508782245934": {
+      "events": {
+        "0xeaa4b099f586301e564c91382ccf87c6d260f2231df5e3cbd9984190d17ee68b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x4d020e6998919b4ff01f6bb947a9ee6594faf0d3e292a8fb75b2515940fc48cc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x1da1396c972c7e9bb4a4b57d6ee889c97fb41c17",
+      "updated_at": 1508784797532
+    },
+    "1508934682225": {
+      "events": {
+        "0xeaa4b099f586301e564c91382ccf87c6d260f2231df5e3cbd9984190d17ee68b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x4d020e6998919b4ff01f6bb947a9ee6594faf0d3e292a8fb75b2515940fc48cc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xbe36de08d925b4e2aa0c17425e6488bfc161509c",
+      "updated_at": 1508934846268
+    },
+    "1508935702625": {
+      "events": {
+        "0xeaa4b099f586301e564c91382ccf87c6d260f2231df5e3cbd9984190d17ee68b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x4d020e6998919b4ff01f6bb947a9ee6594faf0d3e292a8fb75b2515940fc48cc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x0bb4f5097638f84392b3fa1017e4d041faeb5713",
+      "updated_at": 1508936506234
+    },
+    "1508998326630": {
+      "events": {
+        "0xeaa4b099f586301e564c91382ccf87c6d260f2231df5e3cbd9984190d17ee68b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x4d020e6998919b4ff01f6bb947a9ee6594faf0d3e292a8fb75b2515940fc48cc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x7437047615d75ce7cfa1b157cb0f85ccdd398f9e",
+      "updated_at": 1508998420454
+    },
+    "1509006178673": {
+      "events": {
+        "0xeaa4b099f586301e564c91382ccf87c6d260f2231df5e3cbd9984190d17ee68b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x4d020e6998919b4ff01f6bb947a9ee6594faf0d3e292a8fb75b2515940fc48cc": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        },
+        "0x5b75806b27417bb9fff2140c10201e82c1eb953ba93e69952d256dcf5802394f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0xc68eb398dafcec9b520284b14f6886c5a2d2db643a41f890196e32cbed57f821": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "name": "_seller",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "_buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_sellerCh",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "name": "_result",
+              "type": "uint8"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        },
+        "0xdc5a47cec32f71a5763ed1129c085a88436327842a88bc8862d0027a70e86030": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "startBetEvent",
+          "type": "event"
+        },
+        "0x534ba7640003e8b39e2fe6d86b00e251e14bae1c04f962ac1166b5a19e345db0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        },
+        "0xb8f0f82b1b428d9b4c652fb245d1acc585adc1ec2dcfebbebf5e1d2839b7c12c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_winner",
+              "type": "address"
+            }
+          ],
+          "name": "joinBetEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x73822e681aee409a7ca5bc8193c2ce98f5a0b6b1",
+      "updated_at": 1509022498140
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1509022498140
+}
