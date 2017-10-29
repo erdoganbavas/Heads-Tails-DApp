@@ -2,6 +2,8 @@
 
 __This DApp is only for educational purposes and may have some bugs or uncovered important situations for production uses.__
 
+Check [this post](https://medium.com/@erdoganbavas/a-simple-heads-or-tails-betting-dapp-on-private-ethereum-network-85b7148720ef) for more detailed cover of this repo.
+
 Usage;
 
 * Start testrpc with simple __testrpc__ command.
